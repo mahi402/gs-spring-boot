@@ -63,7 +63,7 @@ kind: Service
 
 metadata:
 
-  name: java-front
+  name: java-service
 
 spec:
 
@@ -73,5 +73,3 @@ spec:
 
   - port: 80
 
-  selector:
-    app: java-front
