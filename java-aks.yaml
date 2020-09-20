@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+
+kind: Deployment
+
+metadata:
+
+  name: java-front
+
+spec:
+
+  replicas: 1
+
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+
+      maxSurge: 1
+
+      maxUnavailable: 1
+
+  minReadySeconds: 5 
+  selector:
+    matchLabels:
+      app: java-front
+  template:
+
+    metadata:
+
+      labels:
+
+        app: java-front
+
+    spec:
+
+      containers:
+
+      - name: java-front
+
+        image: __ACR__/java.web:latest
+
+        imagePullPolicy: Always
+
+        ports:
+
+        - containerPort: 80
+
+        resources:
+
+          requests:
+
+            cpu: 250m
+
+          limits:
+
+            cpu: 500m
+   
+
+---
+
+apiVersion: v1
+
+kind: Service
+
+metadata:
+
+  name: java-front
+
+spec:
+
+  type: LoadBalancer
+
+  ports:
+
+  - port: 80
+
+  selector:
+    app: java-front
