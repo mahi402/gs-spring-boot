@@ -4,7 +4,7 @@ kind: Deployment
 
 metadata:
 
-  name: java-front
+  name: java-deployment
 
 spec:
 
